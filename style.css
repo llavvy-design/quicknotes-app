@@ -5,7 +5,7 @@
 }
 
 
-/* ---------- 2. Base page ---------- */
+/* ----------  Base page ---------- */
 
 body {
   margin: 0;
@@ -16,7 +16,7 @@ body {
 }
 
 
-/* ---------- 3. Header ---------- */
+/* ---------- Header ---------- */
 
 .site-header {
   background-color: #8e0000;
@@ -49,7 +49,7 @@ body {
 }
 
 
-/* ---------- 4. Main layout ---------- */
+/* ---------- Main layout ---------- */
 
 main {
   max-width: 700px;
@@ -58,7 +58,7 @@ main {
 }
 
 
-/* ---------- 5. Section cards ---------- */
+/* ---------- Section cards ---------- */
 
 section {
   background-color: #ffffff;
@@ -90,7 +90,7 @@ section {
 }
 
 
-/* ---------- 6. Form ---------- */
+/* ----------Form ---------- */
 
 #note-form {
   display: flex;
@@ -126,6 +126,27 @@ select:focus {
   outline-offset: 2px;
 }
 
+/* ----------Character counter ---------- */
+#char-counter {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  text-align: right;
+}
+
+#char-counter.warning {
+  color: #d97706;
+  font-weight: 700;
+}
+
+#char-counter.over {
+  color: #c62828;
+  font-weight: 700;
+}
+
+
+/* ----------Buttons ---------- */
+
 button {
   border: none;
   border-radius: 8px;
@@ -146,8 +167,7 @@ button:hover {
 }
 
 
-/* ---------- 7. Error message ---------- */
-
+/* ----------Error message ---------- */
 #error-message {
   min-height: 24px;
   margin: 10px 0 0;
@@ -156,7 +176,7 @@ button:hover {
 }
 
 
-/* ---------- 8. Search ---------- */
+/* ---------- Search ---------- */
 
 .search-area {
   display: flex;
@@ -166,7 +186,7 @@ button:hover {
 }
 
 
-/* ---------- 9. Note count ---------- */
+/* ---------- Note count ---------- */
 
 #note-count {
   margin: 0 0 14px;
@@ -174,7 +194,7 @@ button:hover {
 }
 
 
-/* ---------- 10. Notes list ---------- */
+/* ---------- Notes list ---------- */
 
 #notes-list {
   list-style: none;
@@ -191,8 +211,22 @@ button:hover {
   background-color: #ffffff;
 }
 
+.note-text {
+  display: block;
+  margin-bottom: 8px;
+}
 
-/* ---------- 11. Category styles ---------- */
+.note-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+
+/* ---------- Category styles ---------- */
 
 .category-personal {
   border-left-color: #0ba184;
@@ -207,7 +241,19 @@ button:hover {
 }
 
 
-/* ---------- 12. Footer ---------- */
+/* ---------- Delete button ---------- */
+
+.delete-btn {
+  background-color: #8e0000;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.delete-btn:hover {
+  background-color: #6b0000;
+}
+
+/* ---------- Footer ---------- */
 
 .site-footer {
   text-align: center;
@@ -215,8 +261,7 @@ button:hover {
   padding: 20px;
 }
 
-
-/* ---------- 13. Small screens ---------- */
+/* ---------- Small screens ---------- */
 
 @media (max-width: 600px) {
   .site-header {
@@ -236,6 +281,11 @@ button:hover {
   }
 
   #note-form {
+    flex-direction: column;
+  }
+
+  .note-meta {
+    align-items: flex-start;
     flex-direction: column;
   }
 

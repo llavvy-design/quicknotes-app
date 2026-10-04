@@ -1,6 +1,6 @@
 // ==================================================
 // QUICKNOTES
-// Task 5 - Persistence and Search
+// Task 5 + Live Character Counter
 // ==================================================
 
 
@@ -13,8 +13,12 @@ const searchInput = document.querySelector("#search-input");
 const list = document.querySelector("#notes-list");
 const count = document.querySelector("#note-count");
 const errorMessage = document.querySelector("#error-message");
+const charCounter = document.querySelector("#char-counter");
 
 const STORAGE_KEY = "quicknotes-notes";
+
+
+// ---------- Load saved notes ----------
 
 let notes = loadNotes();
 
@@ -33,7 +37,8 @@ function loadNotes() {
   }
 }
 
-// ---------- Save notes ----------
+
+// ----------Save notes ----------
 
 function saveNotes() {
   localStorage.setItem(
@@ -41,6 +46,25 @@ function saveNotes() {
     JSON.stringify(notes)
   );
 }
+
+
+// ----------Character counter ----------
+
+function updateCharacterCounter() {
+  const characterCount = input.value.trim().length;
+
+  charCounter.textContent =
+    `${characterCount} / 200 characters`;
+
+  charCounter.classList.remove("warning", "over");
+
+  if (characterCount > 200) {
+    charCounter.classList.add("over");
+  } else if (characterCount > 180) {
+    charCounter.classList.add("warning");
+  }
+}
+
 
 // ----------Update the note count ----------
 
@@ -50,14 +74,17 @@ function updateCount() {
   } else if (notes.length === 1) {
     count.textContent = "You have 1 note.";
   } else {
-    count.textContent = `You have ${notes.length} notes.`;
+    count.textContent =
+      `You have ${notes.length} notes.`;
   }
 }
 
-// ----------Render notes ----------
+
+// ---------- Render notes ----------
 
 function render() {
-  const searchTerm = searchInput.value.trim().toLowerCase();
+  const searchTerm =
+    searchInput.value.trim().toLowerCase();
 
   list.replaceChildren();
 
@@ -72,7 +99,8 @@ function render() {
   ) {
     const message = document.createElement("li");
 
-    message.textContent = "No notes match your search.";
+    message.textContent =
+      "No notes match your search.";
 
     list.appendChild(message);
   } else {
@@ -96,7 +124,8 @@ function render() {
       details.textContent =
         `${note.category} • ${note.createdAt}`;
 
-      const deleteButton = document.createElement("button");
+      const deleteButton =
+        document.createElement("button");
 
       deleteButton.type = "button";
       deleteButton.textContent = "Delete";
@@ -137,7 +166,7 @@ function addNote(text, category) {
 }
 
 
-// ----------Delete a note ----------
+// ---------- Delete a note ----------
 
 function deleteNote(id) {
   notes = notes.filter((note) => note.id !== id);
@@ -146,7 +175,8 @@ function deleteNote(id) {
   render();
 }
 
-// ---------- Form submission and validation ----------
+
+// ----------  Form submission and validation ----------
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -155,7 +185,8 @@ form.addEventListener("submit", (event) => {
   const category = categoryInput.value;
 
   if (text === "") {
-    errorMessage.textContent = "Please type a note first.";
+    errorMessage.textContent =
+      "Please type a note first.";
     return;
   }
 
@@ -170,8 +201,19 @@ form.addEventListener("submit", (event) => {
   addNote(text, category);
 
   input.value = "";
+
+  updateCharacterCounter();
+
   input.focus();
 });
+
+
+// ---------- Live character counter ----------
+
+input.addEventListener("input", () => {
+  updateCharacterCounter();
+});
+
 
 // ---------- Search ----------
 
@@ -179,4 +221,6 @@ searchInput.addEventListener("input", () => {
   render();
 });
 
+
+updateCharacterCounter();
 render();
