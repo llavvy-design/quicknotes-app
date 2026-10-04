@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>QuickNotes</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-content">
+        <p class="eyebrow">YOUR LITTLE SPACE FOR BIG IDEAS</p>
+        <h1>QuickNotes</h1>
+        <p class="tagline">
+          Capture thoughts, sort your priorities and keep the little things
+          from slipping away.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="note-section" aria-labelledby="add-note-title">
+        <div class="section-heading">
+          <p class="section-label">CREATE</p>
+          <h2 id="add-note-title">Add a note</h2>
+          <p>
+            Write something down, choose a category and keep moving.
+          </p>
+        </div>
+
+        <form id="note-form">
+          <div class="form-group">
+            <label for="note-input">New note</label>
+
+            <input
+              type="text"
+              id="note-input"
+              name="note"
+              placeholder="What do you want to remember?"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="note-category">Category</label>
+
+            <select id="note-category" name="category">
+              <option value="personal">Personal</option>
+              <option value="work">Work</option>
+              <option value="study">Study</option>
+            </select>
+          </div>
+
+          <button type="submit">Add Note</button>
+        </form>
+
+        <p id="error-message" aria-live="polite"></p>
+      </section>
+
+      <section class="notes-section" aria-labelledby="your-notes-title">
+        <div class="section-heading">
+          <p class="section-label">YOUR COLLECTION</p>
+          <h2 id="your-notes-title">Your notes</h2>
+          <p>Search through the ideas you have already saved.</p>
+        </div>
+
+        <div class="search-area">
+          <label for="search-input">Search notes</label>
+
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Search by keyword..."
+          />
+        </div>
+
+        <div class="notes-header">
+          <p id="note-count">You have no notes yet.</p>
+        </div>
+
+        <ul id="notes-list"></ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2026 QuickNotes. Built by Lavine during Web Foundations.</p>
+    </footer>
+  </body>
+</html>
